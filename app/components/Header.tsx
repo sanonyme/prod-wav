@@ -46,7 +46,7 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-          <div className="w-32 flex justify-end">
+          <div className="w-32 flex justify-end items-center ml-auto">
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.nav
@@ -54,7 +54,7 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute md:hidden top-full left-0 w-full bg-black"
+                  className="absolute md:hidden top-full right-0 w-full bg-black"
                 >
                   <ul className="flex flex-col space-y-4 p-4">
                     <li>

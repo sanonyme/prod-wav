@@ -7,6 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Loader2, Send, CheckCircle } from "lucide-react"
+import emailjs from '@emailjs/browser';
+
+// Add these constants at the top of the file
+const EMAILJS_SERVICE_ID = "service_gc4w9us"
+const EMAILJS_TEMPLATE_ID = "template_5cagjpe"
+const EMAILJS_PUBLIC_KEY = "lGPEXSis5IZP_R7xd"
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -29,6 +35,10 @@ export default function ContactSection() {
     }
   }, [controls, inView])
 
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY)
+  }, [])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prevState) => ({ ...prevState, [name]: value }))
@@ -37,16 +47,30 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulating an API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    console.log("Form submitted:", formData)
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          to_email: 'prod.wav44@gmail.com',
+        }
+      )
+      
+      setIsSubmitted(true)
       setFormData({ name: "", email: "", message: "" })
-    }, 3000)
+    } catch (error) {
+      console.error('Failed to send message:', error)
+      alert('Failed to send message. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+      setTimeout(() => {
+        setIsSubmitted(false)
+      }, 3000)
+    }
   }
 
   const containerVariants = {
@@ -84,39 +108,37 @@ export default function ContactSection() {
           variants={itemVariants}
           className="max-w-md mx-auto bg-black/50 backdrop-blur-lg rounded-lg p-8 shadow-2xl border border-white/10"
         >
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <Input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="bg-white/5 border-zinc-700 text-zinc-200 placeholder-zinc-500"
-              />
-            </div>
-            <div className="mb-4">
-              <Input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="bg-white/5 border-zinc-700 text-zinc-200 placeholder-zinc-500"
-              />
-            </div>
-            <div className="mb-4">
-              <Textarea
-                name="message"
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                className="bg-white/5 border-zinc-700 text-zinc-200 placeholder-zinc-500"
-              />
-            </div>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name"
+              required
+              className="w-full bg-zinc-900 border border-white/10 focus:border-pink-300 rounded-lg p-4 outline-none transition-colors"
+              disabled={isSubmitting || isSubmitted}
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email"
+              required
+              className="w-full bg-zinc-900 border border-white/10 focus:border-pink-300 rounded-lg p-4 outline-none transition-colors"
+              disabled={isSubmitting || isSubmitted}
+            />
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your Message"
+              rows={6}
+              required
+              className="w-full bg-zinc-900 border border-white/10 focus:border-pink-300 rounded-lg p-4 outline-none transition-colors"
+              disabled={isSubmitting || isSubmitted}
+            />
             <Button
               type="submit"
               className="w-full bg-white text-black hover:bg-zinc-200 transition-colors relative overflow-hidden group"

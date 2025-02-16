@@ -65,7 +65,9 @@ export default function MixingLevelingSection() {
               onHoverEnd={() => setHoveredCard(null)}
             >
               <Card
-                className={`h-full ${hoveredCard === index ? "scale-105" : "scale-100"} transition-all duration-300`}
+                className={`h-full ${
+                  hoveredCard === index ? "scale-105 border-pink-300" : "scale-100 border-white/10"
+                } transition-all duration-300`}
               >
                 <CardContent className="p-6 flex flex-col h-full">
                   <div className="mb-4">{service.icon}</div>

@@ -88,3 +88,16 @@ body {
   background-size: 200% auto;
 }
 
+.animate-pink-glow {
+  animation: pinkGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pinkGlow {
+  from {
+    box-shadow: 0 0 0px rgb(249 168 212);
+  }
+  to {
+    box-shadow: 0 0 20px rgb(249 168 212);
+  }
+}
+
