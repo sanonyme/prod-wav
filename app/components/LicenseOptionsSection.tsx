@@ -5,6 +5,7 @@ import { motion, useAnimation, useInView } from "framer-motion"
 import { Check, X, Crown, Zap, Star, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 const licenseOptions = [
   {
@@ -64,16 +65,29 @@ const licenseOptions = [
 ]
 
 export default function LicenseOptionsSection() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [expandedCard, setExpandedCard] = useState<number | null>(null)
   const controls = useAnimation()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (inView) {
       controls.start("visible")
     }
   }, [controls, inView])
+
+  const handleCardClick = (index: number) => {
+    if (isMobile) {
+      setExpandedCard(expandedCard === index ? null : index)
+    }
+  }
+
+  const handleCardHover = (index: number | null) => {
+    if (!isMobile) {
+      setExpandedCard(index)
+    }
+  }
 
   return (
     <section ref={ref} id="license-options" className="py-20 relative overflow-hidden min-h-[800px]">
@@ -105,27 +119,16 @@ export default function LicenseOptionsSection() {
               }}
               initial="hidden"
               animate={controls}
-              onHoverStart={() => setHoveredCard(index)}
-              onHoverEnd={() => setHoveredCard(null)}
+              onHoverStart={() => handleCardHover(index)}
+              onHoverEnd={() => handleCardHover(null)}
+              onClick={() => handleCardClick(index)}
             >
               <Card
-                className={`relative h-[300px] hover:h-[600px] ${
-                  hoveredCard === index ? "border-pink-300" : "border-white/10"
-                } ${option.name === "Unlimited License" ? "animate-pink-glow" : ""} transition-all duration-300 ease-in-out overflow-hidden`}
+                className={`relative transform-gpu cursor-pointer border overflow-hidden ${
+                  expandedCard === index ? "border-pink-300" : "border-white/10"
+                } ${option.name === "Unlimited License" ? "animate-pink-glow" : ""}`}
               >
-                <div className="absolute inset-0 rounded-lg p-[1px] bg-gradient-to-br from-white/20 to-white/0">
-                  <div className="absolute inset-0 rounded-lg bg-black"></div>
-                </div>
-
-                {option.popular && (
-                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10">
-                    <span className="bg-pink-300 text-black px-4 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                <CardContent className="relative p-6 pt-12 rounded-lg h-full flex flex-col">
+                <CardContent className="relative p-6 pt-12 rounded-lg">
                   <div className="text-center mb-6">
                     <div className="inline-flex p-3 rounded-full bg-zinc-900 border border-white/10 mb-4">
                       {option.icon}
@@ -136,44 +139,42 @@ export default function LicenseOptionsSection() {
                     </div>
                   </div>
 
-                  <motion.div 
-                    className="flex-grow overflow-y-auto max-h-[350px] scrollbar-hide"
-                    initial={{ opacity: 0 }}
-                    animate={hoveredCard === index ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                  <motion.div
+                    layout
+                    className="overflow-hidden"
+                    animate={{ 
+                      height: expandedCard === index ? "auto" : 0,
+                      opacity: expandedCard === index ? 1 : 0,
+                      marginTop: expandedCard === index ? "1rem" : 0
+                    }}
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      duration: 0.4,
+                      bounce: 0
+                    }}
                   >
                     <ul className="space-y-3">
                       {option.features.map((feature, i) => (
                         <motion.li
                           key={i}
                           className="flex items-start"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={hoveredCard === index ? { opacity: 1, y: 0 } : {}}
-                          transition={{ duration: 0.2, delay: i * 0.05 }}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ 
+                            opacity: expandedCard === index ? 1 : 0,
+                            y: expandedCard === index ? 0 : 10 
+                          }}
+                          transition={{ 
+                            duration: 0.2, 
+                            delay: i * 0.03,
+                            type: "tween"
+                          }}
                         >
                           <Check className="h-5 w-5 text-pink-300 mr-2 shrink-0 mt-0.5" />
                           <span className="text-sm text-zinc-300">{feature}</span>
                         </motion.li>
                       ))}
                     </ul>
-
-                    {option.bulkDeal && (
-                      <motion.div 
-                        className="mt-4"
-                        animate={{ 
-                          boxShadow: ["0 0 0px pink", "0 0 20px pink", "0 0 0px pink"]
-                        }}
-                        transition={{ 
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatType: "reverse"
-                        }}
-                      >
-                        <p className="text-sm font-semibold text-white bg-black/50 py-2 px-3 rounded-lg border border-pink-300">
-                          {option.bulkDeal}
-                        </p>
-                      </motion.div>
-                    )}
                   </motion.div>
 
                   <div className="mt-6">

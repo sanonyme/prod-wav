@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { AudioWaveformIcon as Waveform, Sliders, Mic2, Headphones } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 const services = [
   {
@@ -35,6 +36,7 @@ const services = [
 
 export default function MixingLevelingSection() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const isMobile = useIsMobile()
 
   return (
     <section id="mixing-leveling" className="py-20 relative overflow-hidden">
@@ -66,7 +68,11 @@ export default function MixingLevelingSection() {
             >
               <Card
                 className={`h-full ${
-                  hoveredCard === index ? "scale-105 border-pink-300" : "scale-100 border-white/10"
+                  isMobile 
+                    ? "border-pink-300" 
+                    : hoveredCard === index 
+                      ? "scale-105 border-pink-300" 
+                      : "scale-100 border-white/10"
                 } transition-all duration-300`}
               >
                 <CardContent className="p-6 flex flex-col h-full">

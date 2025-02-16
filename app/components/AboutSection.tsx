@@ -37,12 +37,40 @@ export default function AboutSection() {
             />
           </div>
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">About wav</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              About{" "}
+              <a 
+                href="https://youtube.com/@wav" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-pink-300 hover:text-pink-400 transition-colors"
+              >
+                @wav
+              </a>
+            </h2>
             <p className="text-lg mb-6 text-zinc-300">
               Started the journey in 2018, making beats for fun and to express my creativity. Took it seriously ever since and started my youtube channel where I upload my beats, drum kits, and sample packs.
             </p>
-            <p className="text-lg mb-8 text-zinc-300">
-              With various collaborations with other artists, the vision got clearer, and I found my own sound and unique style. Wouldn't be possible without @Knowitall and @yz on youtube.
+            <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+              With various collaborations with other artists, the vision got clearer, and I found my own sound and unique style. Wouldn't be possible without{" "}
+              <a 
+                href="https://youtube.com/@KnowItAllBeats" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-pink-300 hover:text-pink-400 transition-colors"
+              >
+                @Knowitall
+              </a>
+              {" "}and{" "}
+              <a 
+                href="https://youtube.com/@yz416" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-pink-300 hover:text-pink-400 transition-colors"
+              >
+                @yz
+              </a>
+              {" "}on youtube.
             </p>
             <div className="grid grid-cols-2 gap-6">
               {achievements.map((achievement, index) => (
