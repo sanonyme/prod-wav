@@ -8,7 +8,18 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "wav - Premium Beats",
   description: "Discover and purchase unique beats crafted by wav",
-  generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: [
+      { url: '/favicon.jpg', type: 'image/jpeg' },
+    ],
+    apple: [
+      { url: '/favicon.jpg', sizes: '180x180', type: 'image/jpeg' },
+    ],
+    other: [
+      { rel: 'apple-touch-icon', url: '/favicon.jpg' },
+    ],
+  }
 }
 
 export default function RootLayout({

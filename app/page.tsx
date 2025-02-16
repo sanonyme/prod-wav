@@ -7,6 +7,7 @@ import AboutSection from "./components/AboutSection"
 import ContactSection from "./components/ContactSection"
 import Footer from "./components/Footer"
 import MixingLevelingSection from "./components/MixingLevelingSection"
+import NoiseOverlay from "./components/NoiseOverlay"
 
 export default function Home() {
   // const [beats, setBeats] = useState([])
@@ -28,6 +29,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen text-white relative">
+      <NoiseOverlay />
       <div className="relative z-10">
         <Header />
         <main className="container mx-auto px-4">

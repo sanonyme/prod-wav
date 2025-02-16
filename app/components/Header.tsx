@@ -18,29 +18,57 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+    setIsMenuOpen(false)
+  }
+
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black" : "bg-transparent"}`}>
       <div className="container mx-auto px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center">
           <div className="w-32">
-            <Link href="/" className="text-3xl font-bold tracking-tighter">
-              wav
+            <Link 
+              href="/" 
+              className="text-3xl font-bold tracking-tighter"
+              onClick={(e) => {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            >
+              .wav
             </Link>
           </div>
           <nav className="hidden md:block flex-1">
             <ul className="flex justify-center space-x-12">
               <li>
-                <Link href="#beats" className="hover:text-pink-300 transition-colors">
+                <Link 
+                  href="#beats" 
+                  className="hover:text-pink-300 transition-colors"
+                  onClick={(e) => handleNavClick(e, 'license-options')}
+                >
                   Beats
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="hover:text-pink-300 transition-colors">
+                <Link 
+                  href="#about" 
+                  className="hover:text-pink-300 transition-colors"
+                  onClick={(e) => handleNavClick(e, 'about')}
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-pink-300 transition-colors">
+                <Link 
+                  href="#contact" 
+                  className="hover:text-pink-300 transition-colors"
+                  onClick={(e) => handleNavClick(e, 'contact')}
+                >
                   Contact
                 </Link>
               </li>

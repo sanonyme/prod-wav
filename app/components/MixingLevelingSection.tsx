@@ -75,7 +75,9 @@ export default function MixingLevelingSection() {
                   <p className="text-zinc-400 mb-4 flex-grow">{service.description}</p>
                   <div className="text-2xl font-bold mb-4">{service.price}</div>
                   <Button asChild className="w-full bg-white text-black hover:bg-zinc-200 transition-colors">
-                    <a href="#contact">Get Started</a>
+                    <a href="https://www.beatstars.com/prodwav" target="_blank" rel="noopener noreferrer">
+                      Get Started
+                    </a>
                   </Button>
                 </CardContent>
               </Card>

@@ -50,7 +50,7 @@ const licenseOptions = [
   },
   {
     name: "Exclusive License",
-    price: "Contact Us",
+    price: "Contact Me",
     icon: <Globe className="w-6 h-6" />,
     features: [
       "Used for Music Recording",
@@ -178,7 +178,7 @@ export default function LicenseOptionsSection() {
 
                   <div className="mt-6">
                     <Button asChild className="w-full bg-white text-black hover:bg-zinc-200 transition-colors">
-                      <a href="https://drqnnel.beatstars.com" target="_blank" rel="noopener noreferrer">
+                      <a href="https://www.beatstars.com/prodwav" target="_blank" rel="noopener noreferrer">
                         Get Started
                       </a>
                     </Button>
