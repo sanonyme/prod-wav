@@ -106,7 +106,7 @@ export default function ContactSection() {
         </motion.h2>
         <motion.div
           variants={itemVariants}
-          className="max-w-md mx-auto bg-black/50 backdrop-blur-lg rounded-lg p-8 shadow-2xl border border-white/10"
+          className="max-w-md mx-auto bg-black/50 backdrop-blur-lg rounded-lg p-8 shadow-2xl border border-white/10 relative z-20"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <input

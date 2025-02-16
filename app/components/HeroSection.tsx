@@ -44,10 +44,10 @@ export default function HeroSection() {
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
           >
             <h1 className="text-7xl md:text-9xl font-bold mb-6 tracking-tight relative">
               <motion.span
@@ -107,7 +107,9 @@ export default function HeroSection() {
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-zinc-900/50 rounded-xl p-6 backdrop-blur-lg border border-white/10 transition-colors hover:border-white/20"
+                  className={`bg-zinc-900/50 rounded-xl p-6 backdrop-blur-lg border border-white/10 transition-colors hover:border-white/20 ${
+                    stat.label === "Community" ? "community-card" : ""
+                  }`}
                 >
                   <div className="mb-2 text-white/70 flex justify-center">{stat.icon}</div>
                   <motion.div
