@@ -34,6 +34,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -69,6 +70,7 @@ body {
   from {
     box-shadow: 0 0 0px white;
   }
+
   to {
     box-shadow: 0 0 20px white;
   }
@@ -78,6 +80,7 @@ body {
   0% {
     background-position: 0% 50%;
   }
+
   100% {
     background-position: 200% 50%;
   }
@@ -96,6 +99,7 @@ body {
   from {
     box-shadow: 0 0 0px rgb(249 168 212);
   }
+
   to {
     box-shadow: 0 0 20px rgb(249 168 212);
   }
@@ -118,16 +122,14 @@ body {
   z-index: -1;
   inset: -1em;
   border: solid 1.25em;
-  border-image: conic-gradient(
-    from var(--glow-angle),
-    #ff66b2,
-    #ff99cc,
-    #ffcce6,
-    #ff66b2,
-    #ff99cc,
-    #ffcce6,
-    #ff66b2
-  ) 1;
+  border-image: conic-gradient(from var(--glow-angle),
+      #ff66b2,
+      #ff99cc,
+      #ffcce6,
+      #ff66b2,
+      #ff99cc,
+      #ffcce6,
+      #ff66b2) 1;
   filter: blur(0.75em);
   animation: glowRotate 4s linear infinite;
   content: '';
@@ -150,13 +152,11 @@ body {
   z-index: -1;
   inset: -1em;
   border: solid 1.25em;
-  border-image: conic-gradient(
-    from var(--glow-angle),
-    #669900, #99cc33, #ccee66, 
-    #006699, #3399cc, #990066, 
-    #cc3399, #ff6600, #ff9900, 
-    #ffcc00, #669900
-  ) 1;
+  border-image: conic-gradient(from var(--glow-angle),
+      #669900, #99cc33, #ccee66,
+      #006699, #3399cc, #990066,
+      #cc3399, #ff6600, #ff9900,
+      #ffcc00, #669900) 1;
   filter: blur(0.75em);
   animation: rotateGlow 4s linear infinite;
   content: '';
@@ -172,6 +172,7 @@ body {
   overflow: hidden;
   position: relative;
   border-radius: 0.5em;
+  z-index: 10;
 }
 
 .experience-card::before {
@@ -179,13 +180,11 @@ body {
   z-index: -1;
   inset: -1em;
   border: solid 1.25em;
-  border-image: conic-gradient(
-    from var(--glow-angle),
-    #669900, #99cc33, #ccee66, 
-    #006699, #3399cc, #990066, 
-    #cc3399, #ff6600, #ff9900, 
-    #ffcc00, #669900
-  ) 1;
+  border-image: conic-gradient(from var(--glow-angle),
+      #669900, #99cc33, #ccee66,
+      #006699, #3399cc, #990066,
+      #cc3399, #ff6600, #ff9900,
+      #ffcc00, #669900) 1;
   filter: blur(0.75em);
   animation: rotateGlow 8s linear infinite;
   content: '';
@@ -202,16 +201,14 @@ body {
   z-index: -1;
   inset: -1em;
   border: solid 1.25em;
-  border-image: conic-gradient(
-    from var(--glow-angle),
-    #ff66b2,
-    #ff99cc,
-    #ffcce6,
-    #ff66b2,
-    #ff99cc,
-    #ffcce6,
-    #ff66b2
-  ) 1;
+  border-image: conic-gradient(from var(--glow-angle),
+      #ff66b2,
+      #ff99cc,
+      #ffcce6,
+      #ff66b2,
+      #ff99cc,
+      #ffcce6,
+      #ff66b2) 1;
   filter: blur(1em);
   animation: glowRotate 4s linear infinite;
   content: '';
