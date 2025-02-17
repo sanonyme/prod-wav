@@ -124,9 +124,8 @@ export default function LicenseOptionsSection() {
               onClick={() => handleCardClick(index)}
             >
               <Card
-                className={`relative transform-gpu cursor-pointer border overflow-hidden ${
-                  expandedCard === index ? "border-pink-300" : "border-white/10"
-                } ${option.name === "Unlimited License" ? "animate-pink-glow" : ""}`}
+                className={`relative transform-gpu cursor-pointer border overflow-hidden ${expandedCard === index ? "border-pink-300" : "border-white/10"
+                  }`}
               >
                 <CardContent className="relative p-6 pt-12 rounded-lg">
                   <div className="text-center mb-6">
@@ -142,7 +141,7 @@ export default function LicenseOptionsSection() {
                   <motion.div
                     layout
                     className="overflow-hidden"
-                    animate={{ 
+                    animate={{
                       height: expandedCard === index ? "auto" : 0,
                       opacity: expandedCard === index ? 1 : 0,
                       marginTop: expandedCard === index ? "1rem" : 0
@@ -160,12 +159,12 @@ export default function LicenseOptionsSection() {
                           key={i}
                           className="flex items-start"
                           initial={{ opacity: 0, y: 10 }}
-                          animate={{ 
+                          animate={{
                             opacity: expandedCard === index ? 1 : 0,
-                            y: expandedCard === index ? 0 : 10 
+                            y: expandedCard === index ? 0 : 10
                           }}
-                          transition={{ 
-                            duration: 0.2, 
+                          transition={{
+                            duration: 0.2,
                             delay: i * 0.03,
                             type: "tween"
                           }}

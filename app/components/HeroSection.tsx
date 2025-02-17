@@ -24,8 +24,8 @@ export default function HeroSection() {
   ]
 
   return (
-    <motion.section 
-      ref={containerRef} 
+    <motion.section
+      ref={containerRef}
       className="min-h-screen relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -33,10 +33,24 @@ export default function HeroSection() {
     >
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-black"></div>
+        <div
+          className="absolute inset-0"
+          style={{
+            '--size': '45px',
+            '--line': 'color-mix(in hsl, white, transparent 85%)',
+            background: `
+              linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size),
+              linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% / var(--size) var(--size)
+            `,
+            mask: 'linear-gradient(-20deg, transparent 50%, white)',
+            transformStyle: 'flat',
+            pointerEvents: 'none'
+          } as React.CSSProperties}
+        ></div>
       </div>
 
-      <motion.div 
-        style={{ y, opacity }} 
+      <motion.div
+        style={{ y, opacity }}
         className="relative pt-32 pb-16 px-4"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -50,18 +64,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-7xl md:text-9xl font-bold mb-6 tracking-tight relative">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-block animate-text-gradient bg-gradient-to-r from-white via-pink-300 to-white 
-                bg-[size:200%] bg-clip-text text-transparent"
-                style={{
-                  animation: "textGradient 6s linear infinite",
-                }}
-              >
+              <span className="inline-block text-white">
                 wav
-              </motion.span>
+              </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-zinc-400 max-w-3xl mx-auto">
               Unique beats crafting, elevated drumkit selection, transcending sample packs, and a community of like-minded artists.
@@ -107,9 +112,8 @@ export default function HeroSection() {
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className={`bg-zinc-900/50 rounded-xl p-6 backdrop-blur-lg border border-white/10 transition-colors hover:border-white/20 ${
-                    stat.label === "Community" ? "community-card" : ""
-                  }`}
+                  className={`bg-zinc-900/50 rounded-xl p-6 backdrop-blur-lg border border-white/10 transition-colors hover:border-white/20 ${stat.label === "Community" ? "community-card" : ""
+                    }`}
                 >
                   <div className="mb-2 text-white/70 flex justify-center">{stat.icon}</div>
                   <motion.div
